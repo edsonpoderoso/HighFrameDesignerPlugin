@@ -1,0 +1,27 @@
+Undo - Redo - Need to create undoable edit
+    Connect - 85% done
+        One connection from each requirer - DONE
+        Router - need to create a router (Seems HARD);
+    Delete - DONE
+    Move - DONE
+        MoveProvider - DONE
+        MoveStrategy - DONE
+    Select - DONE
+        SimpleSelection - DONE
+            SelectProvider - DONE
+        RectangularSelection - DONE
+            RectangularSelectionDecorator - DONE
+    SubArch Resize - DONE
+        ResizeProvider - DONE
+Widgets and Pins - 70%
+    Component - DONE
+    SubArch
+        Properties - DONE
+    ConnectionWidget
+        Namming - DONE
+        Properties - 50% MISSING CHANGING NAME
+Node Actions
+    Scene Popup Menu - DONE
+    Load Catalog Menu - 
+Load File
+Save File

@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:hfd="hfd.edsonmoreira.org"
+           targetNamespace="hfd.edsonmoreira.org"
+           elementFormDefault="qualified">
+    
+    <xs:complexType name="position">
+        <xs:sequence>
+            <xs:element name="x" type="xs:unsignedInt"/>
+            <xs:element name="y" type="xs:unsignedInt"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="dimension">
+        <xs:sequence>
+            <xs:element name="width" type="xs:unsignedInt"/>
+            <xs:element name="height" type="xs:unsignedInt"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="interfacePack">
+        <xs:sequence>
+            <xs:element name="interface" type="xs:string" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:simpleType name="IPv4Address">
+        <xs:annotation>
+            <xs:documentation>
+                IPv4 address in the dotted-decimal notation.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:restriction base="xs:string">
+            <xs:pattern value="((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="component">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="id" type="xs:unsignedInt"/>
+            <xs:element name="position" type="hfd:position" />
+            <xs:element name="dimension" type="hfd:dimension" />
+            <xs:element name="providedInterfaces" type="hfd:interfacePack" />
+            <xs:element name="requiredInterfaces" type="hfd:interfacePack"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="subArchitecture">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="id" type="xs:unsignedInt"/>
+            <xs:element name="position" type="hfd:position" />
+            <xs:element name="dimension" type="hfd:dimension" />
+            <xs:element name="model" type="xs:string"/>
+            <xs:element name="ipAdress" type="hfd:IPv4Address"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="connection">
+        <xs:sequence>
+            <xs:element name="protocol" type="xs:string"/>
+            <xs:element name="interface" type="xs:string"/>
+            <xs:element name="providerComponentId" type="xs:unsignedInt"/>
+            <xs:element name="requirerComponentId" type="xs:unsignedInt"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="architecture">
+        <xs:complexType>
+            <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="subarchitecture" type="hfd:subArchitecture" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="component" type="hfd:component" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="connection" type="hfd:connection" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

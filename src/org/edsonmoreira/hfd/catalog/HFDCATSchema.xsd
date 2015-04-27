@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:hfd="catalog.hfd.edsonmoreira.org"
+           targetNamespace="catalog.hfd.edsonmoreira.org"
+           elementFormDefault="qualified">
+    
+    <xs:complexType name="interfacePack">
+        <xs:sequence>
+            <xs:element name="interface" type="xs:string" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="catalogComponent">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="shortDescription" type="xs:string" />
+            <xs:element name="longDescreption" type="xs:string" />
+            <xs:element name="providedInterfaces" type="hfd:interfacePack"/>
+            <xs:element name="requiredInterfaces" type="hfd:interfacePack"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="catalog">
+        <xs:complexType>
+            <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="component" type="hfd:catalogComponent" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
